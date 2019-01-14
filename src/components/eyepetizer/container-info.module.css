@@ -1,0 +1,22 @@
+.ContainerInfo{
+  font-size: .23rem;
+  line-height: 1.5;
+  background:linear-gradient(to right bottom,rgb(135, 255, 255),rgb(255, 255, 255));
+  margin-top:-.25rem
+}
+.tittleSpan{
+  font-size: .3rem
+}
+.tittleDelimeter{
+  width: 5rem;
+  height: 1px;
+  background:linear-gradient(to right,black,white);
+  margin:.025rem auto .02rem 0
+}
+.delimeter{
+  display: inline-block;
+  width: 1rem
+}
+.generalInfo{
+  font-size:.2rem
+}

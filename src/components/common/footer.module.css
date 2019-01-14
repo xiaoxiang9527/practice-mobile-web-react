@@ -1,0 +1,15 @@
+.Footer{
+  height:1.2rem;
+  position:fixed;
+  bottom: 0;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+  border-top:1px solid #edf;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding:.1rem .25rem;
+  z-index: 999;
+}

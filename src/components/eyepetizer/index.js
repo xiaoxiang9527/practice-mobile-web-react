@@ -10,7 +10,8 @@ class Eyepetizer extends Component {
     super(props)
     this.bottomDetect=this.bottomDetect.bind(this)
     this.state={
-      loadingState:true
+      loadingState:true,
+      loadingStateCode:0
     }
   }
   componentDidMount(){
@@ -23,11 +24,12 @@ class Eyepetizer extends Component {
   componentDidUpdate(prevProps,prevState){
     if(prevProps.itemList!==this.props.itemList){
       this.setState({loadingState:false})
+      this.setState((prevState)=>({loadingStateCode:prevState.loadingStateCode+1}))
     }
  }
   bottomDetect(e){
     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
-      if(this.state.loadingState===false){
+      if(this.state.loadingState===false && this.state.loadingStateCode<2){
         this.setState({loadingState:true})
           this.props.initEyepetizerListTwo()
       }
@@ -40,7 +42,7 @@ class Eyepetizer extends Component {
     return (
       <div className={sytles.Eyepetizer}>
        {containerList}
-        <Loading loadingState={this.state.loadingState}/>
+        <Loading {...this.state}/>
       </div>
     );
   }
@@ -59,7 +61,10 @@ const mapDispatchToProps=(dispatch)=>{
     },
     initEyepetizerListTwo(){
       dispatch(actions.getEyepetizerListTwo())
-    }  
+    },
+    initEyepetizerListThree(){
+      dispatch(actions.getEyepetizerListThree())
+    } 
   }
 }
 

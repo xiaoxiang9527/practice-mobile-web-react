@@ -2,4 +2,5 @@
   max-width: 750px;
   background-color: white;
   margin:0 auto;
+  min-height: 100vh;
 }

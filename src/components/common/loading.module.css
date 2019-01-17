@@ -1,6 +1,5 @@
 .Loading{
   width: 100%;
-  transition: height 1s ease;
 }
 .loader{
   margin: .4rem auto;
@@ -17,4 +16,12 @@
 }
 .loadingHide{
   display: none;
+}
+.bottomLine{
+  font-size:.3rem;
+  color: #479AC7;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px dashed #479AC7;
+  margin-top: 2rem
 }

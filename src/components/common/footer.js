@@ -8,10 +8,9 @@ class Footer extends Component{
     super(props);
     this.state={channelList:
       [{name:"开眼",buttonClass:"icon-dianshi",channelId:1},
-      {name:"读书",buttonClass:"icon-thin-_book_writi",channelId:2},
-      {name:"一席",buttonClass:"icon-weibiaoti-",channelId:3},
-      {name:"段子",buttonClass:"icon-Laughinghard",channelId:4},
-      {name:"灵感",buttonClass:"icon-caidanzhaolinggan",channelId:5}
+      {name:"搞笑",buttonClass:"icon-Laughinghard",channelId:2},
+      {name:"读书",buttonClass:"icon-thin-_book_writi",channelId:3},
+      {name:"ACE",buttonClass:"icon-caidanzhaolinggan",channelId:4}
       ]
     }
   }

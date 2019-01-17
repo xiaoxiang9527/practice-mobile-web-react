@@ -58,10 +58,6 @@ const getEyepetizerListTwo=()=>{
 }
 
 
-
-
-
-
 export default {
   switchChannel,
   getEyepetizerListOne,

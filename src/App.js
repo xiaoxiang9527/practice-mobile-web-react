@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import Eyepetizer from './components/eyepetizer';
 import Joke from './components/joke';
+import Article from './components/article';
+import Ace from './components/ace';
 import Footer from './components/common/footer.js';
 import './app.css';
 import {Provider} from 'react-redux';
@@ -16,6 +18,8 @@ class App extends Component {
           <Router>
             <Switch>
               <Route path="/joke" component={Joke} />
+              <Route path="/article" component={Article} /> 
+              <Route path="/ace" component={Ace} /> 
               <Route path="/" component={Eyepetizer} /> 
             </Switch>
           </Router>

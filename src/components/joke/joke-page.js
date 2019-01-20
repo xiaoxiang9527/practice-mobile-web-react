@@ -1,10 +1,12 @@
-import React,{Component} from 'react';
-import styles from './index.module.css';
+import React, {Component}from 'react';
 import {connect} from 'react-redux';
-import actions from '../../stores/actions/action-article';
+import {withRouter} from 'react-router-dom';
+import actions from '../../stores/actions/action-joke';
+import styles from './joke-page.module.css';
+import JokeContainer from './joke-container';
 import Loading from '../common/loading';
 
-class Article extends Component{
+class JokePage extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -14,10 +16,10 @@ class Article extends Component{
     this.bottomDetect=this.bottomDetect.bind(this)
   }
   componentDidMount(){
-    this.props.initArticle()
+    this.props.initJokeList()
     window.addEventListener('scroll',this.bottomDetect)
     let _this=this
-    this.refs.article.addEventListener('touchstart', function (ev){
+    this.refs.joke.addEventListener('touchstart', function (ev){
       let x=0
       let disX=ev.targetTouches[0].clientX-x;
       function fnMove(ev){
@@ -38,7 +40,8 @@ class Article extends Component{
           this.style.transform='translate(0px,0px)'
         }
         else{
-          _this.props.initArticle()
+          _this.props.history.push('/joke/qutu')
+          _this.props.switchShow(false)
           this.style.transform='translate(0px,0px)'
         }
         this.removeEventListener('touchmove', fnMove, false);
@@ -52,9 +55,8 @@ class Article extends Component{
    componentWillUnmount(){
      window.removeEventListener('scroll',this.bottomDetect)
    }
-   componentDidUpdate(prevProps,prevState){
-     if(prevProps.article!==this.props.article){
-       window.scrollTo(0,0)
+   componentDidUpdate(prevProps){
+     if(prevProps.jokeList!==this.props.jokeList){
        this.setState({loadingState:false})
      }
   }
@@ -62,21 +64,23 @@ class Article extends Component{
      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
        if(this.state.loadingState===false && this.state.loadingStateCode<2){
          this.setState({loadingState:true})
-           this.props.initArticle()
+           this.props.initJokeList()
        }
      }
    }
   render(){
-    const article=this.props.article
+    const jokeList=this.props.jokeList.map(
+      (joke)=>{
+        return(
+          <JokeContainer   {...joke} key={joke.hashId} />
+        )
+      }
+    )
     return(
-      <div className={styles.Article} ref="article">
-      <div className={styles.slide}>&lt; &lt; &lt;向左滑动，可以换一篇噢 &lt; &lt; &lt;</div>
-        <div className={styles.title}>{article.title}</div>
-        <div className={styles.info}>
-          <span>作者:{article.author}</span><span></span><span>字数:{article.wc}</span>
-        </div>
-        <div dangerouslySetInnerHTML={{__html:article.content}} />
-        <Loading {...this.state}  />
+      <div className={styles.JokePage} ref='joke'>
+      {jokeList}
+      <Loading {...this.state}/>
+  
       </div>
     )
   }
@@ -84,15 +88,18 @@ class Article extends Component{
 
 const mapStateToProps=(state)=>{
   return{
-    article:state.getIn(['reducerArticle','article'])
+    jokeList:state.getIn(['reducerJoke','jokeList'])
   }
 }
 const mapDispatchToProps=(dispatch)=>{
   return{
-    initArticle(){
-      dispatch(actions.getArticle())
+    initJokeList(){
+      dispatch(actions.getJokeList())
+    },
+    switchShow(show){
+      dispatch(actions.switchShow(show))
     }
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Article)
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(JokePage))

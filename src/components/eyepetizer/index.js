@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Container from './container';
 import sytles from './index.module.css'; 
-import actions from '../../stores/actions';
+import actions from '../../stores/actions/action-eyepetizer';
 import Loading from '../common/loading';
 
 class Eyepetizer extends Component {
@@ -14,6 +14,7 @@ class Eyepetizer extends Component {
       loadingStateCode:0
     }
   }
+
   componentDidMount(){
    this.props.initEyepetizerListOne()
    window.addEventListener('scroll',this.bottomDetect,false)
@@ -35,6 +36,7 @@ class Eyepetizer extends Component {
       }
     }
   }
+  
   render() {
     const containerList=this.props.itemList.map((item)=>{
       return <Container data={item.data} key={item.data.id}/>
@@ -61,10 +63,7 @@ const mapDispatchToProps=(dispatch)=>{
     },
     initEyepetizerListTwo(){
       dispatch(actions.getEyepetizerListTwo())
-    },
-    initEyepetizerListThree(){
-      dispatch(actions.getEyepetizerListThree())
-    } 
+    }
   }
 }
 

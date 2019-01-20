@@ -1,0 +1,9 @@
+.JokeContainer{
+  width: 6.8rem;
+  box-shadow: 0 .1rem .15rem rgba(0,0,0,0.23), 0 .1rem .1rem rgba(0,0,0,0.22);
+  margin: .3rem auto 0 auto;
+  border:1px solid rgba(0,0,0,0.22);
+  font-size:.3rem;
+  line-height: 1.7;
+  padding: .1rem 0
+}

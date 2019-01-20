@@ -1,0 +1,29 @@
+.JokeHeader{
+  display: flex;
+  margin-top: 0;
+  font-size: .35rem;
+  padding: .1rem .95rem ;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #edf
+}
+.JokeHeader li{
+  list-style: none;
+  flex:1;
+  text-align: center;
+  vertical-align: middle
+}
+.JokeHeader li a{
+  outline: none;
+  text-decoration: none;
+  color:black;
+}
+.delimeter{
+  display: inline-block;
+  width: 1px;
+  background-color: #edf;
+  height: .2rem;
+}
+.jokeShow{
+  color:#479AC7
+}

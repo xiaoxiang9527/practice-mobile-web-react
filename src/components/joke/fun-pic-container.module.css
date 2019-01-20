@@ -1,0 +1,13 @@
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: .15rem .25rem;
+  border-bottom: 1px solid #edf
+}
+.picInfo{
+  font-size: .3rem;
+}
+.pic{
+  display: inline-block;
+  max-width: 7rem;
+}

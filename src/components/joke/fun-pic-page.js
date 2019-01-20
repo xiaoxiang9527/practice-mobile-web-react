@@ -1,10 +1,13 @@
 import React,{Component} from 'react';
-import styles from './index.module.css';
 import {connect} from 'react-redux';
-import actions from '../../stores/actions/action-article';
+import {withRouter} from 'react-router-dom';
+import actions from '../../stores/actions/action-fun-pic';
+import actionsJoke from '../../stores/actions/action-joke';
+import FunPicContainer from './fun-pic-container';
 import Loading from '../common/loading';
+import styles from './fun-pic-page.module.css';
 
-class Article extends Component{
+class FunPicPage extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -14,31 +17,32 @@ class Article extends Component{
     this.bottomDetect=this.bottomDetect.bind(this)
   }
   componentDidMount(){
-    this.props.initArticle()
+    this.props.initFunPicList()
     window.addEventListener('scroll',this.bottomDetect)
     let _this=this
-    this.refs.article.addEventListener('touchstart', function (ev){
+    this.refs.funPic.addEventListener('touchstart', function (ev){
       let x=0
       let disX=ev.targetTouches[0].clientX-x;
       function fnMove(ev){
         x=ev.targetTouches[0].clientX-disX;
-        if(x<0){
-          if(x>(-(this.offsetWidth/4))){
+        if(x>0){
+          if(x<this.offsetWidth/4){
             this.style.transform=`translate(${x}px,0px)`
           }
           else{
-            this.style.transform=`translate(${(-(this.offsetWidth/4))}px,0px)`
+            this.style.transform=`translate(${(this.offsetWidth/4)}px,0px)`
           }
         }
       }
       function fnEnd(){
         console.log(this.offsetWidth)
         this.style.transition='0.3s all ease'
-        if(x>-(this.offsetWidth/4)){
+        if(x<this.offsetWidth/4){
           this.style.transform='translate(0px,0px)'
         }
         else{
-          _this.props.initArticle()
+          _this.props.history.push('/joke')
+          _this.props.switchShow(true)
           this.style.transform='translate(0px,0px)'
         }
         this.removeEventListener('touchmove', fnMove, false);
@@ -52,9 +56,8 @@ class Article extends Component{
    componentWillUnmount(){
      window.removeEventListener('scroll',this.bottomDetect)
    }
-   componentDidUpdate(prevProps,prevState){
-     if(prevProps.article!==this.props.article){
-       window.scrollTo(0,0)
+   componentDidUpdate(prevProps){
+     if(prevProps.funPicList!==this.props.funPicList){
        this.setState({loadingState:false})
      }
   }
@@ -62,37 +65,40 @@ class Article extends Component{
      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
        if(this.state.loadingState===false && this.state.loadingStateCode<2){
          this.setState({loadingState:true})
-           this.props.initArticle()
+           this.props.initFunPicList()
        }
      }
    }
+  
   render(){
-    const article=this.props.article
+    const funPicList=this.props.funPicList.map(
+      (funPic)=>{
+        return(
+          <FunPicContainer   {...funPic} key={funPic.hashId} />
+        )
+      })
     return(
-      <div className={styles.Article} ref="article">
-      <div className={styles.slide}>&lt; &lt; &lt;向左滑动，可以换一篇噢 &lt; &lt; &lt;</div>
-        <div className={styles.title}>{article.title}</div>
-        <div className={styles.info}>
-          <span>作者:{article.author}</span><span></span><span>字数:{article.wc}</span>
-        </div>
-        <div dangerouslySetInnerHTML={{__html:article.content}} />
-        <Loading {...this.state}  />
+      <div className={styles.FunPicPage} ref='funPic'>
+        {funPicList}
+        <Loading {...this.state}/>
       </div>
-    )
-  }
+  )}
 }
 
 const mapStateToProps=(state)=>{
   return{
-    article:state.getIn(['reducerArticle','article'])
+    funPicList:state.getIn(['reducerFunPic','funPicList'])
   }
 }
 const mapDispatchToProps=(dispatch)=>{
   return{
-    initArticle(){
-      dispatch(actions.getArticle())
+    initFunPicList(){
+      dispatch(actions.getFunPicList())
+    },
+    switchShow(show){
+      dispatch(actionsJoke.switchShow(show))
     }
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Article)
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(FunPicPage))

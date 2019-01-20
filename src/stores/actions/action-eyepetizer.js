@@ -1,15 +1,6 @@
 import axios from 'axios';
 import {eyepetizerUrlOne,eyepetizerUrlTwo} from '../../apis';
 
-
-export const activateCurrent='activateCurrent'
-const switchChannel=(channelId)=>{
-  return{type:activateCurrent,
-    channelActive:channelId}
-}
-
-
-
 export const initEyepetizerListOne='initEyepetizerListOne'
 const renderEyepetizerListOne=(newList)=>{
   const itemlist=newList.filter((item)=>{return item.type==="video"})
@@ -57,9 +48,7 @@ const getEyepetizerListTwo=()=>{
   }
 }
 
-
-export default {
-  switchChannel,
+export default{
   getEyepetizerListOne,
   getEyepetizerListTwo
 }

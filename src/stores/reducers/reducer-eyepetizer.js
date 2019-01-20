@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable';
-import {initEyepetizerListOne,initEyepetizerListTwo} from '../actions';
+import {initEyepetizerListOne,initEyepetizerListTwo} from '../actions/action-eyepetizer';
 
 
 const initState=fromJS({itemList:[],itemIdList:[]})

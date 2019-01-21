@@ -7,7 +7,7 @@ const initState=fromJS(
   [{name:"开眼",buttonClass:"icon-dianshi",channelId:1,channelUrl:"/eyepetizer"},
   {name:"搞笑",buttonClass:"icon-Laughinghard",channelId:2,channelUrl:"/joke"},
   {name:"短文",buttonClass:"icon-thin-_book_writi",channelId:3,channelUrl:"/article"},
-  {name:"ACE",buttonClass:"icon-caidanzhaolinggan",channelId:4,channelUrl:"/ace"}
+  {name:"一言",buttonClass:"icon-caidanzhaolinggan",channelId:4,channelUrl:"/ace"}
   ]}
 )
 

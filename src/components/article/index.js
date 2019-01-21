@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import styles from './index.module.css';
 import {connect} from 'react-redux';
 import actions from '../../stores/actions/action-article';
+import actionsCommon from '../../stores/actions/action-common';
 import Loading from '../common/loading';
 
 class Article extends Component{
@@ -15,6 +16,7 @@ class Article extends Component{
   }
   componentDidMount(){
     this.props.initArticle()
+    this.props.switchChannelButton()
     window.addEventListener('scroll',this.bottomDetect)
     let _this=this
     this.refs.article.addEventListener('touchstart', function (ev){
@@ -32,7 +34,6 @@ class Article extends Component{
         }
       }
       function fnEnd(){
-        console.log(this.offsetWidth)
         this.style.transition='0.3s all ease'
         if(x>-(this.offsetWidth/4)){
           this.style.transform='translate(0px,0px)'
@@ -52,7 +53,7 @@ class Article extends Component{
    componentWillUnmount(){
      window.removeEventListener('scroll',this.bottomDetect)
    }
-   componentDidUpdate(prevProps,prevState){
+   componentDidUpdate(prevProps){
      if(prevProps.article!==this.props.article){
        window.scrollTo(0,0)
        this.setState({loadingState:false})
@@ -70,7 +71,7 @@ class Article extends Component{
     const article=this.props.article
     return(
       <div className={styles.Article} ref="article">
-      <div className={styles.slide}>&lt; &lt; &lt;向左滑动，可以换一篇噢 &lt; &lt; &lt;</div>
+      <div className={styles.slide}>&lt; &lt; &lt;左滑可以换一篇噢 &lt; &lt; &lt;</div>
         <div className={styles.title}>{article.title}</div>
         <div className={styles.info}>
           <span>作者:{article.author}</span><span></span><span>字数:{article.wc}</span>
@@ -91,6 +92,9 @@ const mapDispatchToProps=(dispatch)=>{
   return{
     initArticle(){
       dispatch(actions.getArticle())
+    },
+    switchChannelButton(){
+      dispatch(actionsCommon.switchChannelButton(3))
     }
   }
 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Container from './container';
 import sytles from './index.module.css'; 
 import actions from '../../stores/actions/action-eyepetizer';
+import actionsCommon from '../../stores/actions/action-common';
 import Loading from '../common/loading';
 
 class Eyepetizer extends Component {
@@ -17,12 +18,13 @@ class Eyepetizer extends Component {
 
   componentDidMount(){
    this.props.initEyepetizerListOne()
+   this.props.switchChannelButton()
    window.addEventListener('scroll',this.bottomDetect,false)
   }
   componentWillUnmount(){
     window.removeEventListener('scroll',this.bottomDetect)
   }
-  componentDidUpdate(prevProps,prevState){
+  componentDidUpdate(prevProps){
     if(prevProps.itemList!==this.props.itemList){
       this.setState({loadingState:false})
       this.setState((prevState)=>({loadingStateCode:prevState.loadingStateCode+1}))
@@ -63,6 +65,9 @@ const mapDispatchToProps=(dispatch)=>{
     },
     initEyepetizerListTwo(){
       dispatch(actions.getEyepetizerListTwo())
+    },
+    switchChannelButton(){
+      dispatch(actionsCommon.switchChannelButton(1))
     }
   }
 }

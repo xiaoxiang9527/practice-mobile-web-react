@@ -1,4 +1,5 @@
 .Eyepetizer{
   padding-bottom: .3rem;
   margin: -0.3rem auto 1.2rem auto;
+  min-height: 100vh
 }

@@ -17,6 +17,7 @@ class JokePage extends Component{
   }
   componentDidMount(){
     this.props.initJokeList()
+    this.props.switchShow(true)
     window.addEventListener('scroll',this.bottomDetect)
     let _this=this
     this.refs.joke.addEventListener('touchstart', function (ev){
@@ -34,15 +35,14 @@ class JokePage extends Component{
         }
       }
       function fnEnd(){
-        console.log(this.offsetWidth)
         this.style.transition='0.3s all ease'
         if(x>-(this.offsetWidth/4)){
           this.style.transform='translate(0px,0px)'
         }
         else{
-          _this.props.history.push('/joke/qutu')
-          _this.props.switchShow(false)
           this.style.transform='translate(0px,0px)'
+         setTimeout(()=>{ _this.props.switchShow(true);_this.props.history.push('/joke/qutu')
+          },250) 
         }
         this.removeEventListener('touchmove', fnMove, false);
        this.removeEventListener('touchend', fnEnd, false);

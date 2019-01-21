@@ -1,0 +1,48 @@
+.Ace{
+  height: 100vh;
+  width: 7.5rem;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.Ace img{
+  height: 100vh;
+  width: 7.5rem;
+}
+.zuoHua{
+  font-size: 1.5rem !important;
+  color: grey;
+  position: absolute;
+  top:35vh;
+  left:-.375rem;
+  opacity: .6
+}
+.zuoHua:hover,.youHua:hover {
+  opacity: 1;
+}
+.youHua{
+  font-size: 1.5rem !important;
+  position: absolute;
+  color: grey;
+  top:35vh;
+  right:-.375rem;
+  opacity: .6;
+}
+.wenZi{
+color: aqua;
+font-size: .3rem;
+padding: .2rem .2rem 0 .2rem;
+background-color: grey;
+opacity: .7;
+line-height: 1.3;
+letter-spacing:1px;
+position: abstolute;
+top:0
+}
+.wenZi span{
+  display: block;
+  }
+  .laiYuan{
+    text-align: right;
+    font-style: italic
+  }

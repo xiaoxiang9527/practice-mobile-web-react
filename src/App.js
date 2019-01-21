@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component,Suspense,lazy } from 'react';
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
-import Eyepetizer from './components/eyepetizer';
-import Joke from './components/joke';
-import Article from './components/article';
-import Ace from './components/ace';
 import Footer from './components/common/footer.js';
+import LoadingComponent from './components/common/LoadingComponent';
 import './app.css';
 import {Provider} from 'react-redux';
 import store from './stores';
 import './assets/iconfont/iconfont.css';
+
+const Joke=lazy(()=>import('./components/joke'))
+const Eyepetizer=lazy(()=>import('./components/eyepetizer'))
+const Article=lazy(()=>import('./components/article'))
+const Ace=lazy(()=>import('./components/ace'))
 
 class App extends Component {
   render() {
@@ -17,6 +19,7 @@ class App extends Component {
         <div className="App">
           <Router>
             <div>
+              <Suspense fallback={<LoadingComponent/>} >
               <Switch>
                 <Route exact path="/joke" component={Joke} />
                 <Route exact path="/joke/qutu" component={Joke} />
@@ -25,6 +28,7 @@ class App extends Component {
                 <Route exact path="/eyepetizer" component={Eyepetizer} /> 
                 <Redirect from="/" to="/eyepetizer"></Redirect>
               </Switch>
+              </Suspense>
               <Footer/>
             </div>
           </Router>

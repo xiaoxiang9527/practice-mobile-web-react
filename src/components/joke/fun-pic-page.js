@@ -18,6 +18,7 @@ class FunPicPage extends Component{
   }
   componentDidMount(){
     this.props.initFunPicList()
+    this.props.switchShow(false)
     window.addEventListener('scroll',this.bottomDetect)
     let _this=this
     this.refs.funPic.addEventListener('touchstart', function (ev){
@@ -35,15 +36,14 @@ class FunPicPage extends Component{
         }
       }
       function fnEnd(){
-        console.log(this.offsetWidth)
         this.style.transition='0.3s all ease'
         if(x<this.offsetWidth/4){
           this.style.transform='translate(0px,0px)'
         }
         else{
-          _this.props.history.push('/joke')
-          _this.props.switchShow(true)
           this.style.transform='translate(0px,0px)'
+         setTimeout(()=>{ _this.props.switchShow(true);_this.props.history.push('/joke');
+          },250) 
         }
         this.removeEventListener('touchmove', fnMove, false);
        this.removeEventListener('touchend', fnEnd, false);

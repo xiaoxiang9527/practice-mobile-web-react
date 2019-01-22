@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from './container-video.module.css';
+import PropTypes from 'prop-types';
 
 export default class ContainerVideo extends Component{
   constructor(props){
@@ -24,4 +25,9 @@ export default class ContainerVideo extends Component{
     this.setState({'coverShow':false})
     this.refs.video.play()
   }
+}
+
+ContainerVideo.propTypes={
+  playUrl:PropTypes.string.isRequired,
+  cover:PropTypes.string.isRequired
 }

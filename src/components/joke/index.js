@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import actionsCommon from '../../stores/actions/action-common';
 //import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import JokeHeader from './joke-header';
@@ -35,4 +36,10 @@ const mapDispatchToProps=dispatch=>{
     }
   }
 }
+
+Joke.propTypes={
+  switchChannelButton:PropTypes.func.isRequired
+}
+
+
 export default connect(null, mapDispatchToProps)(Joke)

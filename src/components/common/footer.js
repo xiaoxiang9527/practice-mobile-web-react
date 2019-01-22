@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './footer.module.css';
 import FooterButton from './footer-button';
 
@@ -21,4 +22,8 @@ const mapStateToProps=state=>{
   }
 }
 
+Footer.protoTypes={
+
+  channelList:PropTypes.array.isRequired
+}
 export default connect(mapStateToProps,null)(Footer)

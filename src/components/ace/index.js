@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './index.module.css';
 import axios from 'axios';
 import actionsCommon from '../../stores/actions/action-common';
@@ -45,12 +46,12 @@ class Ace extends Component{
             _this.picBackward()
           }
         }
-        this.removeEventListener('touchmove', fnMove, false);
-       this.removeEventListener('touchend', fnEnd, false);
+        this.removeEventListener('touchmove', fnMove, {passive: true});
+       this.removeEventListener('touchend', fnEnd, {passive: true});
       }
 
-      this.addEventListener('touchmove', fnMove, false);
-      this.addEventListener('touchend', fnEnd, false);
+      this.addEventListener('touchmove', fnMove, {passive: true});
+      this.addEventListener('touchend', fnEnd, {passive: true});
     }, {passive: true})
   }
   componentDidUpdate(prevProps,prevState){
@@ -122,6 +123,10 @@ const mapDispatchToProps=dispatch=>{
       dispatch(actionsCommon.switchChannelButton(4))
     }
   }
+}
+
+Ace.propTypes={
+  switchChannelButton:PropTypes.func.isRequired
 }
 
 export default connect(null,mapDispatchToProps)(Ace)

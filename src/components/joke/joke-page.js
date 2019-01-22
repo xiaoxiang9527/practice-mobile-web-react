@@ -1,6 +1,7 @@
 import React, {Component}from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import actions from '../../stores/actions/action-joke';
 import styles from './joke-page.module.css';
 import JokeContainer from './joke-container';
@@ -26,17 +27,17 @@ class JokePage extends Component{
       function fnMove(ev){
         x=ev.targetTouches[0].clientX-disX;
         if(x<0){
-          if(x>(-(this.offsetWidth/4))){
+          if(x>(-(this.offsetWidth/5))){
             this.style.transform=`translate(${x}px,0px)`
           }
           else{
-            this.style.transform=`translate(${(-(this.offsetWidth/4))}px,0px)`
+            this.style.transform=`translate(${(-(this.offsetWidth/5))}px,0px)`
           }
         }
       }
       function fnEnd(){
         this.style.transition='0.3s all ease'
-        if(x>-(this.offsetWidth/4)){
+        if(x>-(this.offsetWidth/5)){
           this.style.transform='translate(0px,0px)'
         }
         else{
@@ -44,12 +45,12 @@ class JokePage extends Component{
          setTimeout(()=>{ _this.props.switchShow(true);_this.props.history.push('/joke/qutu')
           },250) 
         }
-        this.removeEventListener('touchmove', fnMove, false);
-       this.removeEventListener('touchend', fnEnd, false);
+        this.removeEventListener('touchmove', fnMove, {passive: true});
+       this.removeEventListener('touchend', fnEnd, {passive: true});
       }
 
-      this.addEventListener('touchmove', fnMove, false);
-      this.addEventListener('touchend', fnEnd, false);
+      this.addEventListener('touchmove', fnMove, {passive: true});
+      this.addEventListener('touchend', fnEnd, {passive: true});
     }, {passive: true})
   }
    componentWillUnmount(){
@@ -100,6 +101,13 @@ const mapDispatchToProps=(dispatch)=>{
       dispatch(actions.switchShow(show))
     }
   }
+}
+
+JokePage.propTypes={
+  jokeList:PropTypes.oneOfType([PropTypes.array,PropTypes.object]).isRequired,
+  initJokeList:PropTypes.func.isRequired,
+  switchShow:PropTypes.func.isRequired
+
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(JokePage))

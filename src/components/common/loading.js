@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './loading.module.css';
 
 export default function Loading(props){
@@ -17,3 +18,7 @@ export default function Loading(props){
   }
 }
 
+Loading.propTypes={
+  loadingState:PropTypes.bool.isRequired,
+  loadingStateCode:PropTypes.number
+}

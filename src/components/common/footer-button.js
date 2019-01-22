@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from './footer-button.module.css';
 import actions from '../../stores/actions/action-common';
 
@@ -44,5 +45,9 @@ const mapStateToProps=(state)=>{
   }
 }
 
+FooterButton.proTypes={
+  channelActive:PropTypes.oneOf([1,2,3,4]).isRequired,
+  switchChannelButton:PropTypes.func.isRequired
+}
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(FooterButton))
 

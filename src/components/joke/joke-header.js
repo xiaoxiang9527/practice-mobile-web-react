@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import actions from '../../stores/actions/action-joke';
 import styles from './joke-header.module.css';
@@ -46,6 +47,11 @@ const mapDispatchToProps=(dispatch)=>{
       dispatch(actions.switchShow(show))
     }
   }
+}
+
+JokeHeader.propTypes={
+  jokeShow:PropTypes.bool.isRequired,
+  switchShow:PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(JokeHeader))

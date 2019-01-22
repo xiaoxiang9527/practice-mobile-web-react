@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './container.module.css';
+import PropTypes from 'prop-types';
 import ContainerVideo from './container-video';
 import ContainerInfo from './container-info';
 
@@ -27,4 +28,8 @@ export default function Container(props){
       duration={secsToMins(props.data.duration)} date={formatDate(new Date(props.data.date))}/>
     </div>
   )
+}
+
+Container.propTypes={
+  data:PropTypes.object.isRequired
 }

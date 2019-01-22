@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Container from './container';
+import PropTypes from 'prop-types';
 import sytles from './index.module.css'; 
 import actions from '../../stores/actions/action-eyepetizer';
 import actionsCommon from '../../stores/actions/action-common';
@@ -70,6 +71,13 @@ const mapDispatchToProps=(dispatch)=>{
       dispatch(actionsCommon.switchChannelButton(1))
     }
   }
+}
+
+Eyepetizer.propTypes={
+  itemList:PropTypes.oneOfType([PropTypes.array,PropTypes.object]).isRequired,
+  initEyepetizerListOne:PropTypes.func.isRequired,
+  initEyepetizerListTwo:PropTypes.func.isRequired,
+  switchChannelButton:PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Eyepetizer)

@@ -1,4 +1,5 @@
 import React  from 'react';
+import PropTypes from 'prop-types';
 import styles from './container-info.module.css'
 
 export default function ContainerInfo(props){
@@ -21,4 +22,12 @@ export default function ContainerInfo(props){
     <span>{props.description}</span>   
   </div> 
   )
+}
+
+ContainerInfo.propTypes={
+  title:PropTypes.string,
+  category:PropTypes.string,
+  date:PropTypes.string,
+  duration:PropTypes.string,
+  description:PropTypes.string
 }

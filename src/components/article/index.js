@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import styles from './index.module.css';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import actions from '../../stores/actions/action-article';
 import actionsCommon from '../../stores/actions/action-common';
 import Loading from '../common/loading';
@@ -42,12 +43,12 @@ class Article extends Component{
           _this.props.initArticle()
           this.style.transform='translate(0px,0px)'
         }
-        this.removeEventListener('touchmove', fnMove, false);
-       this.removeEventListener('touchend', fnEnd, false);
+        this.removeEventListener('touchmove', fnMove, {passive: true});
+       this.removeEventListener('touchend', fnEnd, {passive: true});
       }
 
-      this.addEventListener('touchmove', fnMove, false);
-      this.addEventListener('touchend', fnEnd, false);
+      this.addEventListener('touchmove', fnMove, {passive: true});
+      this.addEventListener('touchend', fnEnd, {passive: true});
     }, {passive: true})
   }
    componentWillUnmount(){
@@ -98,5 +99,12 @@ const mapDispatchToProps=(dispatch)=>{
     }
   }
 }
+
+Article.propTypes={
+  article:PropTypes.object.isRequired,
+  initArticle:PropTypes.func.isRequired,
+  switchChannelButton:PropTypes.func.isRequired
+}
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(Article)

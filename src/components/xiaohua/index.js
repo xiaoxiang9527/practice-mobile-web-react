@@ -3,20 +3,19 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import actionsCommon from '../../stores/actions/action-common';
 //import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
-import JokeHeader from './joke-header';
-import JokePage from './joke-page';
-import FunPicPage from './fun-pic-page';
-import styles from './index.module.css';
+import XiaoHuaHeader from './xiaohua-header';
+import XiaoHuaPage from './xiaohua-page';
+import QuTuPage from './qutu-page';
 
-class Joke extends Component{
+class XiaoHua extends Component{
   componentDidMount(){
     this.props.switchChannelButton()
   }
   render(){
     return(
-      <div className={styles.Joke}>
-        <JokeHeader/>
-        {this.props.history.location.pathname==='/xiaohua/qutu'?<FunPicPage></FunPicPage>:<JokePage></JokePage>
+      <div>
+        <XiaoHuaHeader/>
+        {this.props.history.location.pathname==='/xiaohua/qutu'?<QuTuPage></QuTuPage>:<XiaoHuaPage></XiaoHuaPage>
           }
         {/* <Router>
           <Switch>
@@ -37,9 +36,9 @@ const mapDispatchToProps=dispatch=>{
   }
 }
 
-Joke.propTypes={
+XiaoHua.propTypes={
   switchChannelButton:PropTypes.func.isRequired
 }
 
 
-export default connect(null, mapDispatchToProps)(Joke)
+export default connect(null, mapDispatchToProps)(XiaoHua)

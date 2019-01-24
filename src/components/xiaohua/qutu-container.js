@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './fun-pic-container.module.css';
+import styles from './qutu-container.module.css';
 
-const FunPicContainer=(props)=>{
+const QuTuContainer=(props)=>{
   return (
     <div className={styles.container}>
       <div className={styles.picInfo}>
@@ -12,9 +12,9 @@ const FunPicContainer=(props)=>{
     </div>
   )
 }
-FunPicContainer.propTypes={
+QuTuContainer.propTypes={
   content:PropTypes.string.isRequired,
   url:PropTypes.string.isRequired
 }
 
-export default FunPicContainer
+export default QuTuContainer

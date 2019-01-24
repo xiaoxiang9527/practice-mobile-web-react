@@ -19,6 +19,7 @@ class KaiYan extends Component {
   componentDidMount(){
    this.props.initListOne()
    this.props.switchChannelButton()
+   window.scrollTo(0,0)
    window.addEventListener('scroll',()=>{detectBottom(this,this.props.initListTwo)},false)
   }
   componentWillUnmount(){

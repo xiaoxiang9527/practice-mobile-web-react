@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './joke-container.module.css';
+import styles from './xiaohua-container.module.css';
 
-const JokeContainer=(props)=>{
+const xiaoHuaContainer=(props)=>{
   return(
     <div className={styles.JokeContainer}>
     {props.content}
@@ -10,8 +10,8 @@ const JokeContainer=(props)=>{
   )
 }
 
-JokeContainer.propTypes={
+xiaoHuaContainer.propTypes={
   content:PropTypes.string.isRequired
 }
 
-export default JokeContainer
+export default xiaoHuaContainer

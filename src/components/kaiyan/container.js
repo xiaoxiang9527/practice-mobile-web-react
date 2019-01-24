@@ -3,21 +3,7 @@ import styles from './container.module.css';
 import PropTypes from 'prop-types';
 import ContainerVideo from './container-video';
 import ContainerInfo from './container-info';
-
-function secsToMins(secs){
-  const mins=Math.floor(secs/60)
-  const reminSecs=secs-mins*60
-  return `${mins}分钟${reminSecs}秒`
-}
-
-function formatDate(now) {
-  const year = now.getFullYear();
-  const month = now.getMonth() + 1;
-  const date = now.getDate();
-  const hour = (now.getHours() < 10) ? "0" + now.getHours() : now.getHours();
-  const min = (now.getMinutes() < 10) ? "0" + now.getMinutes() : now.getMinutes();
-  return year + "-" + month + "-" + date + " " + hour+":"+min
-}
+import {secsToMins, formatDate} from '../../utils/time-format';
 
 export default function Container(props){
   return(

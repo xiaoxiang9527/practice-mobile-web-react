@@ -2,12 +2,13 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './index.module.css';
+import touchYiYan from '../../utils/touch-yiyan';
 import axios from 'axios';
 import actionsCommon from '../../stores/actions/action-common';
 import {bgUrl,yiyanUrl} from '../../apis';
 import Loading from '../common/loading';
 
-class Ace extends Component{
+class YiYan extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -28,31 +29,7 @@ class Ace extends Component{
     this.initBgPic()
     this.initYiyan()
     window.addEventListener('scroll',this.bottomDetect)
-    let _this=this
-    this.refs.ace.addEventListener('touchstart', function (ev){
-      let x=0
-      let disX=ev.targetTouches[0].clientX-x;
-      function fnMove(ev){
-        x=ev.targetTouches[0].clientX-disX;
-    }
-      function fnEnd(){
-        if (x<0){
-          if(x<(-this.offsetWidth/4)){
-            _this.picForward()
-          }
-        }
-        else{
-          if(x>this.offsetWidth/4){
-            _this.picBackward()
-          }
-        }
-        this.removeEventListener('touchmove', fnMove, {passive: true});
-       this.removeEventListener('touchend', fnEnd, {passive: true});
-      }
-
-      this.addEventListener('touchmove', fnMove, {passive: true});
-      this.addEventListener('touchend', fnEnd, {passive: true});
-    }, {passive: true})
+    this.refs.pageOfYiYan.addEventListener('touchstart',(ev)=>{touchYiYan(ev,this.refs.pageOfYiYan,this)}, {passive: true})
   }
   componentDidUpdate(prevProps,prevState){
     if(prevState.yiYan!==this.state.yiYan){
@@ -103,7 +80,7 @@ class Ace extends Component{
   render(){
     const {bgPicList,curPic}=this.state
     return(
-      <div className={styles.Ace} ref='ace'>
+      <div className={styles.Ace} ref='pageOfYiYan'>
       <div className={styles.wenZi}>
           <span>{this.state.yiYan}</span>
           <span className={styles.laiYuan}>---{this.state.from}</span>
@@ -125,8 +102,8 @@ const mapDispatchToProps=dispatch=>{
   }
 }
 
-Ace.propTypes={
+YiYan.propTypes={
   switchChannelButton:PropTypes.func.isRequired
 }
 
-export default connect(null,mapDispatchToProps)(Ace)
+export default connect(null,mapDispatchToProps)(YiYan)

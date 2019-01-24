@@ -1,21 +1,12 @@
 import React,{Component} from 'react';
 import styles from './index.module.css';
 import {connect} from 'react-redux';
+import detectBottom from '../../utils/detect-bottom';
+import touchDuanWen from '../../utils/touch-duanwen';
 import PropTypes from 'prop-types';
 import actions from '../../stores/actions/action-duanwen';
 import actionsCommon from '../../stores/actions/action-common';
 import Loading from '../common/loading';
-
-
-function detectBottom(cb){
-  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
-    if(this.state.loadingState===false && this.state.loadingStateCode<2){
-      this.setState({loadingState:true})
-        cb()
-    }
-  }
-}
-
 
 class DuanWen extends Component{
   constructor(props){
@@ -24,49 +15,18 @@ class DuanWen extends Component{
       loadingState:true,
       loadingStateCode:0
     }
-    this.detectBottom=detectBottom.bind(this)
   }
   componentDidMount(){
     this.props.fetchData()
     this.props.switchChannelButton()
-    window.addEventListener('scroll',this.detectBottom(this.props.fetchData))
-    let _this=this
-    this.refs.pageOfDuanWen.addEventListener('touchstart', function (ev){
-      let x=0
-      let disX=ev.targetTouches[0].clientX-x;
-      function fnMove(ev){
-        x=ev.targetTouches[0].clientX-disX;
-        if(x<0){
-          if(x>(-(this.offsetWidth/4))){
-            this.style.transform=`translate(${x}px,0px)`
-          }
-          else{
-            this.style.transform=`translate(${(-(this.offsetWidth/4))}px,0px)`
-          }
-        }
-      }
-      function fnEnd(){
-        this.style.transition='0.3s all ease'
-        if(x>-(this.offsetWidth/4)){
-          this.style.transform='translate(0px,0px)'
-        }
-        else{
-          _this.props.fetchData()
-          this.style.transform='translate(0px,0px)'
-        }
-        this.removeEventListener('touchmove', fnMove, {passive: true});
-       this.removeEventListener('touchend', fnEnd, {passive: true});
-      }
-
-      this.addEventListener('touchmove', fnMove, {passive: true});
-      this.addEventListener('touchend', fnEnd, {passive: true});
-    }, {passive: true})
+    window.addEventListener('scroll',()=>{detectBottom(this,this.props.fetchData)})
+    this.refs.pageOfDuanWen.addEventListener('touchstart',(ev)=>{touchDuanWen(ev,this.refs.pageOfDuanWen,this)}, {passive: true})
   }
    componentWillUnmount(){
      window.removeEventListener('scroll',this.detectBottom)
    }
    componentDidUpdate(prevProps){
-     if(prevProps.article!==this.props.article){
+     if(prevProps.data!==this.props.data){
        window.scrollTo(0,0)
        this.setState({loadingState:false})
      }
@@ -108,6 +68,5 @@ DuanWen.propTypes={
   fetchData:PropTypes.func.isRequired,
   switchChannelButton:PropTypes.func.isRequired
 }
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(DuanWen)

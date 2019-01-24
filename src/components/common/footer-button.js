@@ -22,7 +22,7 @@ class FooterButton extends Component{
   render(){
     return (
       <div onClick={this.switchChannel} className={
-        this.props.channelActive===this.props.channelId ?`${styles.FooterButton} ${styles.buttonActive}`:styles.FooterButton
+        this.props.activatedChannel===this.props.channelId ?`${styles.FooterButton} ${styles.buttonActive}`:styles.FooterButton
         }>
         <span className={`iconfont ${styles.buttonSize} ${this.props.buttonClass}`}></span>
         <div className={styles.buttonName}>{this.props.name}</div>
@@ -41,7 +41,7 @@ const mapDispatchToProps=(dispatch,ownProps)=>{
 
 const mapStateToProps=(state)=>{
   return{
-    channelActive:state.getIn(['reducerCommon','channelActive'])
+    activatedChannel:state.getIn(['reducerCommon','activatedChannel'])
   }
 }
 

@@ -1,7 +1,7 @@
-export const activateCurrent='activateCurrent'
+export const activateCurrentChannel='activateCurrentChannel'
 const switchChannelButton=(channelId)=>{
-  return{type:activateCurrent,
-    channelActive:channelId}
+  return{type:activateCurrentChannel,
+    activatedChannel:channelId}
 }
 
 export default {

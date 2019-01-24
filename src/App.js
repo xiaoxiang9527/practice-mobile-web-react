@@ -26,7 +26,7 @@ class App extends Component {
               <Suspense fallback={<LoadingOfComponent/>} >
               <Switch>
                 {routes.map(route=>(
-                  <Route exact path={route.path} component={route.component} />))}
+                  <Route exact path={route.path} component={route.component} key={route.path}/>))}
                   <Redirect from="/" to="/kaiyan"></Redirect>
               </Switch>
               </Suspense>

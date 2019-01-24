@@ -12,16 +12,16 @@ class JokeHeader extends Component{
     this.switchFunPic=this.switchFunPic.bind(this)
   }
   componentDidMount(){
-    if (this.props.location.pathname==='/joke/qutu')
+    if (this.props.location.pathname==='/xiaohua/qutu')
     this.props.switchShow(false)
   }
   switchJoke(){
     this.props.switchShow(true)
-    this.props.history.push('/joke')
+    this.props.history.push('/xiaohua')
   }
   switchFunPic(){
    this.props.switchShow(false)
-    this.props.history.push('/joke/qutu')
+    this.props.history.push('/xiaohua/qutu')
 
   }
   render(){

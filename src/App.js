@@ -1,16 +1,20 @@
 import React, { Component,Suspense,lazy } from 'react';
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import Footer from './components/common/footer.js';
-import LoadingComponent from './components/common/LoadingComponent';
+import LoadingOfComponent from './components/common/loadingofcomponent';
 import './app.css';
 import {Provider} from 'react-redux';
 import store from './stores';
 import './assets/iconfont/iconfont.css';
 
-const Joke=lazy(()=>import('./components/joke'))
-const Eyepetizer=lazy(()=>import('./components/eyepetizer'))
-const Article=lazy(()=>import('./components/article'))
-const Ace=lazy(()=>import('./components/ace'))
+const XiaoHua=lazy(()=>import('./components/xiaohua'))
+const KaiYan=lazy(()=>import('./components/kaiyan'))
+const DuanWen=lazy(()=>import('./components/duanwen'))
+const YiYan=lazy(()=>import('./components/yiyan'))
+
+const routes=[{path:'/xiaohua',component:XiaoHua},{path:'/xiaohua/qutu',component:XiaoHua},
+{path:'/duanwen',component:DuanWen},{path:'/yiyan',component:YiYan},{path:'/kaiyan',component:KaiYan}]
+
 
 class App extends Component {
   render() {
@@ -19,14 +23,11 @@ class App extends Component {
         <div className="App">
           <Router>
             <div>
-              <Suspense fallback={<LoadingComponent/>} >
+              <Suspense fallback={<LoadingOfComponent/>} >
               <Switch>
-                <Route exact path="/joke" component={Joke} />
-                <Route exact path="/joke/qutu" component={Joke} />
-                <Route path="/article" component={Article} /> 
-                <Route exact path="/ace" component={Ace} /> 
-                <Route exact path="/eyepetizer" component={Eyepetizer} /> 
-                <Redirect from="/" to="/eyepetizer"></Redirect>
+                {routes.map(route=>(
+                  <Route exact path={route.path} component={route.component} />))}
+                  <Redirect from="/" to="/kaiyan"></Redirect>
               </Switch>
               </Suspense>
               <Footer/>

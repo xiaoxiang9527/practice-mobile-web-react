@@ -16,7 +16,7 @@ class Joke extends Component{
     return(
       <div className={styles.Joke}>
         <JokeHeader/>
-        {this.props.history.location.pathname==='/joke/qutu'?<FunPicPage></FunPicPage>:<JokePage></JokePage>
+        {this.props.history.location.pathname==='/xiaohua/qutu'?<FunPicPage></FunPicPage>:<JokePage></JokePage>
           }
         {/* <Router>
           <Switch>

@@ -2,7 +2,7 @@ import reducerCommon from './reducer-common';
 import reducerEyepetizer from './reducer-eyepetizer';
 import reducerJoke from './reducer-joke';
 import reducerFunPic from './reducer-fun-pic';
-import reducerArticle from './reducer-article';
+import reducerDuanWen from './reducer-duanwen';
 import {combineReducers} from 'redux-immutable';
 
 const rootReducer=combineReducers({
@@ -10,7 +10,7 @@ const rootReducer=combineReducers({
   reducerEyepetizer,
   reducerJoke,
   reducerFunPic,
-  reducerArticle
+  reducerDuanWen
 });
 
 export default rootReducer

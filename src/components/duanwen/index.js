@@ -2,25 +2,36 @@ import React,{Component} from 'react';
 import styles from './index.module.css';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import actions from '../../stores/actions/action-article';
+import actions from '../../stores/actions/action-duanwen';
 import actionsCommon from '../../stores/actions/action-common';
 import Loading from '../common/loading';
 
-class Article extends Component{
+
+function detectBottom(cb){
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
+    if(this.state.loadingState===false && this.state.loadingStateCode<2){
+      this.setState({loadingState:true})
+        cb()
+    }
+  }
+}
+
+
+class DuanWen extends Component{
   constructor(props){
     super(props)
     this.state={
       loadingState:true,
       loadingStateCode:0
     }
-    this.bottomDetect=this.bottomDetect.bind(this)
+    this.detectBottom=detectBottom.bind(this)
   }
   componentDidMount(){
-    this.props.initArticle()
+    this.props.fetchData()
     this.props.switchChannelButton()
-    window.addEventListener('scroll',this.bottomDetect)
+    window.addEventListener('scroll',this.detectBottom(this.props.fetchData))
     let _this=this
-    this.refs.article.addEventListener('touchstart', function (ev){
+    this.refs.pageOfDuanWen.addEventListener('touchstart', function (ev){
       let x=0
       let disX=ev.targetTouches[0].clientX-x;
       function fnMove(ev){
@@ -40,7 +51,7 @@ class Article extends Component{
           this.style.transform='translate(0px,0px)'
         }
         else{
-          _this.props.initArticle()
+          _this.props.fetchData()
           this.style.transform='translate(0px,0px)'
         }
         this.removeEventListener('touchmove', fnMove, {passive: true});
@@ -52,7 +63,7 @@ class Article extends Component{
     }, {passive: true})
   }
    componentWillUnmount(){
-     window.removeEventListener('scroll',this.bottomDetect)
+     window.removeEventListener('scroll',this.detectBottom)
    }
    componentDidUpdate(prevProps){
      if(prevProps.article!==this.props.article){
@@ -60,24 +71,16 @@ class Article extends Component{
        this.setState({loadingState:false})
      }
   }
-   bottomDetect(e){
-     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight+50) {
-       if(this.state.loadingState===false && this.state.loadingStateCode<2){
-         this.setState({loadingState:true})
-           this.props.initArticle()
-       }
-     }
-   }
   render(){
-    const article=this.props.article
+    const data=this.props.data
     return(
-      <div className={styles.Article} ref="article">
+      <div className={styles.Article} ref="pageOfDuanWen">
       <div className={styles.slide}>&lt; &lt; &lt;左滑可以换一篇噢 &lt; &lt; &lt;</div>
-        <div className={styles.title}>{article.title}</div>
+        <div className={styles.title}>{data.title}</div>
         <div className={styles.info}>
-          <span>作者:{article.author}</span><span></span><span>字数:{article.wc}</span>
+          <span>作者:{data.author}</span><span></span><span>字数:{data.wc}</span>
         </div>
-        <div dangerouslySetInnerHTML={{__html:article.content}} />
+        <div dangerouslySetInnerHTML={{__html:data.content}} />
         <Loading {...this.state}  />
       </div>
     )
@@ -86,13 +89,13 @@ class Article extends Component{
 
 const mapStateToProps=(state)=>{
   return{
-    article:state.getIn(['reducerArticle','article'])
+    data:state.getIn(['reducerDuanWen','data'])
   }
 }
 const mapDispatchToProps=(dispatch)=>{
   return{
-    initArticle(){
-      dispatch(actions.getArticle())
+    fetchData(){
+      dispatch(actions.fetchData())
     },
     switchChannelButton(){
       dispatch(actionsCommon.switchChannelButton(3))
@@ -100,11 +103,11 @@ const mapDispatchToProps=(dispatch)=>{
   }
 }
 
-Article.propTypes={
-  article:PropTypes.object.isRequired,
-  initArticle:PropTypes.func.isRequired,
+DuanWen.propTypes={
+  data:PropTypes.object.isRequired,
+  fetchData:PropTypes.func.isRequired,
   switchChannelButton:PropTypes.func.isRequired
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Article)
+export default connect(mapStateToProps,mapDispatchToProps)(DuanWen)

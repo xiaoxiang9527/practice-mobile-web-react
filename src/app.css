@@ -1,4 +1,6 @@
 .App{
+  width: 7.5rem;
+  overflow:hidden;
   max-width: 750px;
   background-color: white;
   margin:0 auto;

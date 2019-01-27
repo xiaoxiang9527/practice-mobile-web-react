@@ -13,12 +13,12 @@ export default function touchXiaoHua (ev,thisElement,thisComponent){
     }
   }
   function fnEnd(){
-    thisElement.style.transition='0.2s all ease'
+    thisElement.style.transition='0.3s all ease'
     if(x>-(thisElement.offsetWidth/5)){
       thisElement.style.transform='translate(0px,0px)'
     }
     else{
-      thisElement.style.transform='translate(0px,0px)'
+      thisElement.style.transform='translate(-7.5rem,0px)'
      setTimeout(()=>{ thisComponent.props.switchShow(true);thisComponent.props.history.push('/xiaohua/qutu')
       },250) 
     }

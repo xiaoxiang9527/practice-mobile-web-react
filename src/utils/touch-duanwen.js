@@ -18,8 +18,8 @@ export default function touchDuanWen(ev,thisElement,thisComponent){
       thisElement.style.transform='translate(0px,0px)'
     }
     else{
-      thisComponent.props.fetchData()
       thisElement.style.transform='translate(0px,0px)'
+      thisComponent.props.fetchData()
     }
     thisElement.removeEventListener('touchmove', fnMove, {passive: true});
     thisElement.removeEventListener('touchend', fnEnd, {passive: true});

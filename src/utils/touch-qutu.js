@@ -18,7 +18,7 @@ export default function touchQuTu(ev,thisElement,thisComponent){
       thisElement.style.transform='translate(0px,0px)'
     }
     else{
-      thisElement.style.transform='translate(0px,0px)'
+      thisElement.style.transform='translate(7.5rem,0px)'
      setTimeout(()=>{ thisComponent.props.switchShow(true);thisComponent.props.history.push('/xiaohua');
       },250) 
     }

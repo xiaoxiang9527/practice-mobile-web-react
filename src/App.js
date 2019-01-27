@@ -1,4 +1,4 @@
-import React, { Component,Suspense,lazy } from 'react';
+import React, { Suspense,lazy } from 'react';
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 import Footer from './components/common/footer.js';
 import LoadingOfComponent from './components/common/loadingofcomponent';
@@ -16,8 +16,7 @@ const routes=[{path:'/xiaohua',component:XiaoHua},{path:'/xiaohua/qutu',componen
 {path:'/duanwen',component:DuanWen},{path:'/yiyan',component:YiYan},{path:'/kaiyan',component:KaiYan}]
 
 
-class App extends Component {
-  render() {
+const App=()=>{
     return (
       <Provider store={store}>
         <div className="App">
@@ -35,8 +34,7 @@ class App extends Component {
           </Router>
         </div>
       </Provider>
-    );
-  }
+    )
 }
 
 export default App;

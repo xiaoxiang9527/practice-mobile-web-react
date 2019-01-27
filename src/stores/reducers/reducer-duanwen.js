@@ -2,7 +2,7 @@ import {fromJS} from 'immutable';
 import { initDataDuanWen } from '../actions/action-duanwen';
 
 const initState=fromJS({
-  data:{title:'1',wc:'2',content:'3'}
+  data:{title:'',wc:'',content:''}
 })
 
 export default (state=initState,action)=>{

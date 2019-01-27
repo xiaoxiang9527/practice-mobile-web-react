@@ -24,6 +24,7 @@ export default class ContainerVideo extends Component{
   videoPlay() {
     this.setState({'coverShow':false})
     this.refs.video.play()
+    this.refs.video.style.visibility='visible'
   }
 }
 

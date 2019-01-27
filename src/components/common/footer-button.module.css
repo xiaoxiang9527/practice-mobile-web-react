@@ -12,8 +12,10 @@
 .buttonSize{
   font-size:.6rem !important;
   display: block;
+  font-weight: 500
 }
 
 .buttonName{
   font-size:.22rem;
+  font-weight: 600
 }

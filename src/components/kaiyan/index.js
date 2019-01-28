@@ -37,7 +37,7 @@ class KaiYan extends Component {
       return <Container data={item.data} key={item.data.id}/>
     })
     return (
-      <div className={sytles.Eyepetizer}>
+      <div className={sytles.KaiYan}>
        {containerList}
         <Loading {...this.state}/>
       </div>

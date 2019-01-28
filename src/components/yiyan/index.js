@@ -34,6 +34,7 @@ class YiYan extends Component{
   componentDidUpdate(prevProps,prevState){
     if(prevState.yiYan!==this.state.yiYan){
       this.setState({loadingState:false})
+      this.refs.img.style.opacity=1
     }
   }
   picForward(){
@@ -44,6 +45,7 @@ class YiYan extends Component{
       this.setState(prevState=>({curPic:prevState.curPic+1}),
       ()=>{return this.state.curPic})
     }
+    this.refs.img.style.opacity=0
     this.initYiyan()
   }
   picBackward(){
@@ -54,6 +56,7 @@ class YiYan extends Component{
       this.setState(prevState=>({curPic:prevState.curPic-1}),
       ()=>{return this.state.curPic})
     }
+    this.refs.img.style.opacity=0
     this.initYiyan()
   }
   initBgPic(){
@@ -80,12 +83,12 @@ class YiYan extends Component{
   render(){
     const {bgPicList,curPic}=this.state
     return(
-      <div className={styles.Ace} ref='pageOfYiYan'>
+      <div className={styles.YiYan} ref='pageOfYiYan'>
       <div className={styles.wenZi}>
           <span>{this.state.yiYan}</span>
           <span className={styles.laiYuan}>---{this.state.from}</span>
         </div>
-      <img src={bgPicList[curPic].img} alt=''></img>
+      <img src={bgPicList[curPic].img} alt='' ref='img'></img>
         <span className={`${styles.zuoHua} iconfont icon-xiangzuohua`} onClick={this.picForward}/>
         <span className={`${styles.youHua} iconfont icon-xiangyouhua`} onClick={this.picBackward}/>
         <Loading  loadingState={this.state.loadingState} />

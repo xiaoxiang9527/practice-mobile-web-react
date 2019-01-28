@@ -1,13 +1,15 @@
-.Ace{
+.YiYan{
   height: 100vh;
   width: 7.5rem;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
 }
-.Ace img{
+.YiYan img{
   height: 100vh;
   width: 7.5rem;
+  opacity: 1;
+  transition: opacity .2s ease
 }
 .zuoHua{
   font-size: 1.5rem !important;

@@ -34,7 +34,7 @@ class DuanWen extends Component{
   render(){
     const data=this.props.data
     return(
-      <div className={styles.Article} ref="pageOfDuanWen">
+      <div className={styles.DuanWen} ref="pageOfDuanWen">
       <div className={styles.slide}>&lt; &lt; &lt;左滑可以换一篇噢 &lt; &lt; &lt;</div>
         <div className={styles.title}>{data.title}</div>
         <div className={styles.info}>

@@ -1,11 +1,11 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import actions from '../../stores/actions/action-xiaohua';
 import styles from './xiaohua-header.module.css';
 
-class XiaoHuaHeader extends Component{
+class XiaoHuaHeader extends PureComponent{
   constructor(props){
     super(props)
     this.switchXiaoHua=this.switchXiaoHua.bind(this)

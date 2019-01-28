@@ -1,11 +1,11 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './footer-button.module.css';
 import actions from '../../stores/actions/action-common';
 
-class FooterButton extends Component{
+class FooterButton extends PureComponent{
   constructor(props){
     super(props)
     this.switchChannel=this.switchChannel.bind(this)

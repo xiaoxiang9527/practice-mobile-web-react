@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import styles from './container-video.module.css';
 import PropTypes from 'prop-types';
 
-export default class ContainerVideo extends Component{
+export default class ContainerVideo extends PureComponent{
   constructor(props){
     super(props)
     this.state={

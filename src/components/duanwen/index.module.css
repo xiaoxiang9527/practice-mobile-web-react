@@ -2,9 +2,8 @@
   font-size: .3rem;
   background-color:#F8ECC2;
   line-height: 1.7;
-  padding-top: .15rem;
+  padding: .15rem .15rem 1.2rem .15rem;
   padding-bottom: .3rem;
-  margin-bottom: 1.2rem;
   min-height: 100vh;
 }
 .title{

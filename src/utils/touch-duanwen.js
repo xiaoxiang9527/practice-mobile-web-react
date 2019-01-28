@@ -19,7 +19,7 @@ export default function touchDuanWen(ev,thisElement,thisComponent){
     }
     else{
       thisElement.style.transform='translate(0px,0px)'
-      thisComponent.props.fetchData()
+      setTimeout(()=>{thisComponent.props.fetchData()},300)
     }
     thisElement.removeEventListener('touchmove', fnMove, {passive: true});
     thisElement.removeEventListener('touchend', fnEnd, {passive: true});

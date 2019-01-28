@@ -5,7 +5,6 @@ export default function touchYiYan(ev,thisElement,thisComponent){
     x=ev.targetTouches[0].clientX-disX;
 }
   function fnEnd(){
-    thisElement.style.transition='0.2s all ease'
     if (x<0){
       if(x<(-thisElement.offsetWidth/4)){
         thisComponent.picForward()

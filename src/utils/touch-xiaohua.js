@@ -13,7 +13,7 @@ export default function touchXiaoHua (ev,thisElement,thisComponent){
     }
   }
   function fnEnd(){
-    thisElement.style.transition='0.3s all ease'
+    thisElement.style.transition='0.2s all ease'
     if(x>-(thisElement.offsetWidth/5)){
       thisElement.style.transform='translate(0px,0px)'
     }

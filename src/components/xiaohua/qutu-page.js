@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
@@ -10,7 +10,7 @@ import detectBottom from '../../utils/detect-bottom';
 import touchQuTu from '../../utils/touch-qutu';
 import styles from './qutu-page.module.css';
 
-class QuTuPage extends Component{
+class QuTuPage extends PureComponent{
   constructor(props){
     super(props)
     this.state={

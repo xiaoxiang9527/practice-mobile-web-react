@@ -1,4 +1,4 @@
-import React, {Component}from 'react';
+import React, {PureComponent}from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import detectBottom from '../../utils/detect-bottom';
 import touchXiaoHua from '../../utils/touch-xiaohua';
 import Loading from '../common/loading';
 
-class XiaoHuaPage extends Component{
+class XiaoHuaPage extends PureComponent{
   constructor(props){
     super(props)
     this.state={

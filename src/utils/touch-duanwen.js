@@ -16,13 +16,23 @@ export default function touchDuanWen(ev,thisElement,thisComponent){
     thisElement.style.transition='0.3s all ease'
     if(x>-(thisElement.offsetWidth/4)){
       thisElement.style.transform='translate(0px,0px)'
+      let fnTransitioned=function(){
+        thisElement.removeEventListener('touchmove', fnMove, {passive: true});
+        thisElement.removeEventListener('touchend', fnEnd, {passive: true});
+        thisElement.removeEventListener('transitionend',fnTransitioned,{passive:true})
+      }
+      thisElement.addEventListener('transitionend',fnTransitioned,{passive:true})
     }
     else{
       thisElement.style.transform='translate(0px,0px)'
-      setTimeout(()=>{thisComponent.props.fetchData()},300)
+      let fnTransitioned=function(){
+        thisComponent.props.fetchData()
+        thisElement.removeEventListener('touchmove', fnMove, {passive: true});
+        thisElement.removeEventListener('touchend', fnEnd, {passive: true});
+        thisElement.removeEventListener('transitionend',fnTransitioned,{passive:true})
+      }
+      thisElement.addEventListener('transitionend',fnTransitioned,{passive:true})
     }
-    thisElement.removeEventListener('touchmove', fnMove, {passive: true});
-    thisElement.removeEventListener('touchend', fnEnd, {passive: true});
   }
 
   thisElement.addEventListener('touchmove', fnMove, {passive: true});

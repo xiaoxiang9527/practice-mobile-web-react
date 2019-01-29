@@ -45,8 +45,8 @@ class YiYan extends Component{
       this.setState(prevState=>({curPic:prevState.curPic+1}),
       ()=>{return this.state.curPic})
     }
-    this.refs.img.style.opacity=0
     this.initYiyan()
+    this.refs.img.style.opacity=0
   }
   picBackward(){
     if(this.state.curPic===0){
@@ -56,8 +56,8 @@ class YiYan extends Component{
       this.setState(prevState=>({curPic:prevState.curPic-1}),
       ()=>{return this.state.curPic})
     }
-    this.refs.img.style.opacity=0
     this.initYiyan()
+    this.refs.img.style.opacity=0
   }
   initBgPic(){
     axios.get(bgUrl).then(res=>{

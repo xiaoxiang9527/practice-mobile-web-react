@@ -16,14 +16,24 @@ export default function touchXiaoHua (ev,thisElement,thisComponent){
     thisElement.style.transition='0.2s all ease'
     if(x>-(thisElement.offsetWidth/5)){
       thisElement.style.transform='translate(0px,0px)'
+      let fnTranstioned=function(){
+        thisElement.removeEventListener('touchmove', fnMove, {passive: true});
+        thisElement.removeEventListener('touchend', fnEnd, {passive: true});
+        thisElement.removeEventListener('transitionend',fnTranstioned,{passive:true})
+      }
+      thisElement.addEventListener('transitionend',fnTranstioned,{passive:true})
     }
     else{
       thisElement.style.transform='translate(-7.5rem,0px)'
-     setTimeout(()=>{ thisComponent.props.switchShow(true);thisComponent.props.history.push('/xiaohua/qutu')
-      },250) 
+      let fnTranstioned=function(){
+        thisComponent.props.switchShow(false)
+        thisComponent.props.history.push('/xiaohua/qutu')
+        thisElement.removeEventListener('touchmove', fnMove, {passive: true});
+        thisElement.removeEventListener('touchend', fnEnd, {passive: true});
+        thisElement.removeEventListener('transitionend',fnTranstioned,{passive:true})
+      }
+      thisElement.addEventListener('transitionend',fnTranstioned,{passive:true})
     }
-    thisElement.removeEventListener('touchmove', fnMove, {passive: true});
-    thisElement.removeEventListener('touchend', fnEnd, {passive: true});
   }
 
   thisElement.addEventListener('touchmove', fnMove, {passive: true});

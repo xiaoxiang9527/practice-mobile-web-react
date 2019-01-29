@@ -4,28 +4,21 @@
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>╯□╰</title>
-    <script>
-    (function (doc, win) {
-        let docEl = doc.documentElement,
-            resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
-            recalc = function () {
-                let clientWidth = docEl.clientWidth;
-                if (!clientWidth) return;
-                if(clientWidth>=750){
-                    docEl.style.fontSize = '100px';
-                }else{
-                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-                }
-            };
-
-        if (!doc.addEventListener) return;
-        win.addEventListener(resizeEvt, recalc, false);
-        doc.addEventListener('DOMContentLoaded', recalc, false);
-    })(document, window);
-    </script>
+    <style>
+        @media screen and (max-width: 749px) {
+        html {
+            font-size: calc(100vw/7.5);
+        }
+        }
+        @media screen and (min-width: 750px) {
+        html {
+            font-size: 100px;
+        }
+        }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
